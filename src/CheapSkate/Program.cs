@@ -29,16 +29,17 @@ namespace CheapSkate
                 Console.WriteLine(e.Message);
                 Environment.Exit(1);
             }
-            
+
+            var filename = Assembly.GetEntryAssembly().GetName().Name;
             var consoleLogger = new ConsoleLogger();
-            var fileLogger = new FileLogger(Assembly.GetEntryAssembly().FullName + ".log");
+            var fileLogger = new FileLogger(filename + ".log");
             var logger = string.IsNullOrEmpty(options.Email) ? new CompositeLogger(fileLogger, consoleLogger) : 
                 new CompositeLogger(fileLogger, consoleLogger,
                     new EmailLogger(options.SmtpServer, 
                                     "CheapSkate Alert",
-                                    string.Format("cheapskate@{0}.{1}", options.SubDomain, options.Domain),
-                                    options.Email)); 
-            var cache = new Cache(Assembly.GetEntryAssembly().FullName + ".cache");
+                                    string.Format("cheapskate@{0}", options.Domain),
+                                    options.Email));
+            var cache = new Cache(filename + ".cache");
             var dynamicDns = new DynamicDns(new WebRequest());
 
             Console.WriteLine("Connecting...");

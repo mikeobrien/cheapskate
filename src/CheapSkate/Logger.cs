@@ -46,7 +46,7 @@ namespace CheapSkate
         public void Log(string message, params object[] args)
         {
             message = string.Format(message, args);
-            File.AppendAllText(_path, string.Format("{0}: {1}", DateTime.Now, message));
+            File.AppendAllText(_path, string.Format("{0}: {1}\r\n", DateTime.Now, message));
         }
     }
 
