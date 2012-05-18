@@ -1,9 +1,9 @@
 CheapSkate
 =============
 
-CheapSkate is a CLI for NameCheap DDNS.
+CheapSkate is a CLI for (NameCheap)[http://www.namecheap.com/] DDNS.
 	
-## command line reference
+## Command line reference
 
     cheapskate.exe [options]
     
